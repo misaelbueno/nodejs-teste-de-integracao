@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 
-const PORT = process.env.PORT || 8080;
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,4 +15,8 @@ apiRoutes.post('/api/login', routes.login);
 
 app.use(apiRoutes);
 
-app.listen(PORT, () => console.log(`Conectado na porta ${PORT}`));
+/*
+    Detalhe para a exportação do `app`, já que
+    precisaremos dele nos testes com `chaiHttp`
+*/
+module.exports = app;
